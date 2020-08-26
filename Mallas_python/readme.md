@@ -3,6 +3,7 @@
 
 **Ejemplo #2:** Malla 2D estructurada usando las funciones *Transfinite Curve* y *Transfinite Surface*
 ![Malla 2](malla_2.png)
+
 **Ejemplo #3:** Malla 2D estructurada usando la función *extrude*
 ![Malla 3](malla_3.png)
 
