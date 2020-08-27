@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Ejemplo 3: Malla shell en GMSH
+Ejemplo 4: Malla shell en GMSH
 
 Por: Alejandro Hincapié G.
 """
