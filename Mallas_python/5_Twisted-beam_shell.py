@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Ejemplo 4: Malla shell en GMSH ( Problema "Twisted beam")
+Ejemplo 5: Malla shell en GMSH ( Problema "Twisted beam")
 
 Por: Alejandro Hincapié G.
 """
