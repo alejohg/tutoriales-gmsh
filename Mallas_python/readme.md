@@ -1,3 +1,5 @@
+# Mallas 2D creadas con la API de Python para GMSH (formato .py)
+
 ### Ejemplo #1: Malla 2D no estructurada con un agujero en la mitad
 ![Malla 1](malla_1.png)
 
