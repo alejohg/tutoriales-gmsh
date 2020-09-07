@@ -14,3 +14,6 @@
 
 ### Ejemplo #5: Malla de elementos Shell estructurada para el problema *Twisted beam*
 ![Malla 5](malla_5.png)
+
+### Ejemplo #6: Malla de elementos Shell estructurada para una superficie de *Paraboloide hiperbólico*
+![Malla 6](malla_6.jpg)
