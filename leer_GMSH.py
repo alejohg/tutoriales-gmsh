@@ -7,8 +7,9 @@ Por: Alejandro Hincapié Giraldo
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.colors import get_named_colors_mapping
 import gmsh
+
+
 # %% Funciones:
 
 def xnod_from_msh(archivo, dim=2):
@@ -252,39 +253,3 @@ def plot_msh(file, tipo, mostrar_nodos=False, mostrar_num_nodo=False,
         ax.set_aspect('equal', adjustable='box')
     else:
         raise ValueError('El argumento "tipo" introducido no es válido')
-
-
-def grupos_fisicos(archivo, dim=-1):
-    ''' Lee un archivo de texto con extensión .msh que contiene los datos de
-        una malla generada en GMSH.
-        Si se especifica el argumento dim, solo se reportan los grupos físicos
-        de tal dimensión, si no, se reportan todos.
-        Retorna:
-            - Un diccionario en el cual las claves son las ETIQUETAS de los 
-              grupos físicos y los valores son los NOMBRES asociados a cada
-              etiqueta.
-            - Un diccionario en el cual las claves son las etiquetas de los
-              grupos físicos y los valores son listas con los nodos asociados
-              a cada grupo físico.
-    '''
-    if archivo[-4:] != '.msh':
-        raise ValueError('Solo se admite un archivo de extensión .msh')
-
-    gmsh.initialize()
-
-    gmsh.open(archivo)
-    grupos = gmsh.model.getPhysicalGroups(dim)
-    dims = [d[0] for d in grupos]
-    tags = [d[1] for d in grupos]
-    nombres = [gmsh.model.getPhysicalName(dim, tag) for dim, tag in grupos]
-
-    dict1 = dict(zip(tags, nombres))  # Primer diccionario a reportar
-
-    dim_nodos = [(dims[i], gmsh.model.mesh.getNodesForPhysicalGroup(dims[i],
-                                                                    tags[i])[0])
-                 for i in range(len(dims))]
-    dict2 = dict(zip(tags, dim_nodos))  # Segundo diccionario a reportar
-
-    gmsh.finalize()
-
-    return dict1, dict2
