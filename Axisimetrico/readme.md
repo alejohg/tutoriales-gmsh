@@ -50,4 +50,3 @@ Para modelar este problema se creó la siguiente malla (nótese los nombres de l
 Finalmente tras correr el análisis se obtuvo la siguiente deformada (escalada 1000 veces). Los demás resultados se pueden constatar al ejecutar el [código respectivo](ejemplo_Q8_axisimetrico_modificado.py).
 
 ![Deformada](deformada.png) 
-
