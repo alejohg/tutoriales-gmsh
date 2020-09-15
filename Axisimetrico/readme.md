@@ -1,9 +1,9 @@
 # Modificación de un programa de análisis por MEF para el caso axisimétrico, usando elementos finítos serendípitos de 8 nodos.
 
 ## Objetivo: 
-Modificar el programa dado [ejemplo_Q8_axisimetrico_original.py](/ejemplo_Q8_axisimetrico_original.py) (por: Diego A. Álvarez) de tal manera los datos de entrada puedan ser leídos directamente desde una malla creada en GMSH, haciendo uso de los grupos físicos.
+Modificar el programa dado [ejemplo_Q8_axisimetrico_original.py](ejemplo_Q8_axisimetrico_original.py) (por: Diego A. Álvarez) de tal manera los datos de entrada puedan ser leídos directamente desde una malla creada en GMSH, haciendo uso de los grupos físicos.
 
-El programa con todas las modificaciones respectivas es el siguiente: [ejemplo_Q8_axisimetrico_modificado.py](/ejemplo_Q8_axisimetrico_modificado.py).
+El programa con todas las modificaciones respectivas es el siguiente: [ejemplo_Q8_axisimetrico_modificado.py](ejemplo_Q8_axisimetrico_modificado.py).
 
 ## Descripción de modificaciones realizadas:
 
@@ -39,10 +39,10 @@ Las cargas distribuidas (fuerzas superficiales) se reportan sobre curvas física
 
 Se resolvió por el MEF el siguiente problema axisimétrico: 
 
-![Ejemplo](/ejemplo_axisim.png)
+![Ejemplo](ejemplo_axisim.png)
 
 Para modelar este problema se creó la siguiente malla (nótese los nombres de los grupos físicos para indicar restricciones y/o cargas. 
 
-![Grupos](/malla_grupos_fisicos.png)
+![Grupos](malla_grupos_fisicos.png)
 
-¡[Malla](/malla.png)
+¡[Malla](malla.png)
