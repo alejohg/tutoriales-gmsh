@@ -37,5 +37,7 @@ Las cargas distribuidas (fuerzas superficiales) se reportan sobre curvas física
 
 ## Ejemplo del uso del programa:
 
+Se resolvió por el MEF el siguiente problema axisimétrico: 
+
 
 
