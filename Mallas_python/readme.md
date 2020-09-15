@@ -18,7 +18,6 @@
 ### Ejemplo #6: Malla de elementos Shell estructurada para una superficie de *Paraboloide hiperbólico*
 ![Malla 6](malla_6.jpg)
 
-
 ### Ejemplo #7: Malla 2D de un perfil alar (*airfoil*) utilizando la función B-Spline
 ![Malla 7](malla_7.png)
 ![Malla 72](malla_7_2.png)
