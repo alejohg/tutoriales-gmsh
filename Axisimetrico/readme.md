@@ -41,8 +41,12 @@ Se resolvió por el MEF el siguiente problema axisimétrico:
 
 ![Ejemplo](ejemplo_axisim.png)
 
-Para modelar este problema se creó la siguiente malla (nótese los nombres de los grupos físicos para indicar restricciones y/o cargas. 
+Para modelar este problema se creó la siguiente malla (nótese los nombres de los grupos físicos para indicar restricciones y/o cargas. Esta malla se creó utilizando la API de GMSH para Python por medio del código [malla_boussinesq](malla_boussinesq.py).
 
 ![Grupos](malla_grupos_fisicos.png)
 
 ![Malla](malla.png)
+
+Finalmente tras correr el análisis se obtuvo la siguiente deformada (escalada 1000 veces). Los demás resultados se pueden constatar al ejecutar el [código respectivo](ejemplo_Q8_axisimetrico_modificado.py).
+
+![Deformada](deformada.png)
