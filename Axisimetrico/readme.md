@@ -45,4 +45,4 @@ Para modelar este problema se creó la siguiente malla (nótese los nombres de l
 
 ![Grupos](malla_grupos_fisicos.png)
 
-¡[Malla](malla.png)
+![Malla](malla.png)
