@@ -1,4 +1,4 @@
-# Modificación de un programa de análisis por MEF para el caso axisimétrico, usando elementos finítos serendípitos de 8 nodos.
+# Modificación de un programa de análisis por MEF para el caso axisimétrico, usando elementos finitos serendípitos de 8 nodos.
 
 ## Objetivo: 
 Modificar el programa dado [ejemplo_Q8_axisimetrico_original.py](ejemplo_Q8_axisimetrico_original.py) (por: Diego A. Álvarez) de tal manera los datos de entrada puedan ser leídos directamente desde una malla creada en GMSH, haciendo uso de los grupos físicos.
