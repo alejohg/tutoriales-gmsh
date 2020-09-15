@@ -9,7 +9,7 @@ El programa con todas las modificaciones respectivas es el siguiente: [ejemplo_Q
 
 ### Lectura de propiedades de material
 Cada superficie distinta creada en GMSH corresponderá en esencia a un "material diferente", incluso si sus propiedades fuesen iguales, ya que GMSH reportará los elementos finitos como pertenecientes a una entidad distinta.
-Para cada superficie se debe asignar un grupo físico con la sintaxis *mat_E_$\nu$_$\rho$*, por ejemplo: Si se trata de un material con $E = 2e8$ Pa, nu = 0.3 y \rho = 2400 kg/m³, la superficie física asociada debería llamarse *mat_1e8_0.3_2400*, el programa leerá los números entre guiones bajos en ese orden, siempre y cuando estén escritos de tal modo que Python los pueda convertir a flotantes.
+Para cada superficie se debe asignar un grupo físico con la sintaxis *mat_E_nu_rho*, por ejemplo: Si se trata de un material con **E = 2e8 Pa**, **nu = 0.3** y **rho = 2400 kg/m³**, la superficie física asociada debería llamarse *mat_1e8_0.3_2400*, el programa leerá los números entre guiones bajos en ese orden, siempre y cuando estén escritos de tal modo que Python los pueda convertir a flotantes.
 
 **Importante:** Al crear la malla, las etiquetas grupos físicos asociados a cada superficie deben tener el mismo orden que las etiquetas de las superficies respectivas, pues GMSH reporta tanto grupos físicos como entidades en orden creciente de etiquetas.
 
@@ -41,7 +41,7 @@ Se resolvió por el MEF el siguiente problema axisimétrico:
 
 ![Ejemplo](ejemplo_axisim.png)
 
-Para modelar este problema se creó la siguiente malla (nótese los nombres de los grupos físicos para indicar restricciones y/o cargas. Esta malla se creó utilizando la API de GMSH para Python por medio del código [malla_boussinesq](malla_boussinesq.py).
+Para modelar este problema se creó la siguiente malla (nótese los nombres de los grupos físicos para indicar restricciones y/o cargas). Esta malla se creó utilizando la API de GMSH para Python por medio del código [malla_boussinesq](malla_boussinesq.py).
 
 ![Grupos](malla_grupos_fisicos.png)
 
