@@ -17,22 +17,22 @@ Para cada superficie se debe asignar un grupo físico con la sintaxis `mat_E_nu_
 
 Las condiciones de frontera se pueden aplicar sobre puntos físicos o sobre curvas físicas. Para el caso de los puntos con ciertas condiciones de apoyo, el grupo físico se debe crear, según el tipo de restricción, así:
 
--  **Punto con desplazamiento restringido en x, y**: Sintaxis nombre del grupo físico: *punto_res_xy*
--  **Punto con desplazamiento restringido en x**: Sintaxis nombre del grupo físico: *punto_res_x*
--  **Punto con desplazamiento restringido en y**: Sintaxis nombre del grupo físico: *punto_res_y*
+-  **Punto con desplazamiento restringido en x, y**: Sintaxis nombre del grupo físico: `punto_res_xy`
+-  **Punto con desplazamiento restringido en x**: Sintaxis nombre del grupo físico: `punto_res_x`
+-  **Punto con desplazamiento restringido en y**: Sintaxis nombre del grupo físico: `punto_res_y`
 
 Para el caso de bordes con condiciones de apoyo aplicadas, los grupos físicos se manejan de manera similar al caso anterior, en este caso:
--  **Borde con desplazamiento restringido en x, y (empotrado)**: Sintaxis nombre del grupo físico: *borde_res_xy*
--  **Borde con desplazamiento restringido en x**: Sintaxis nombre del grupo físico: *borde_res_x*
--  **Borde con desplazamiento restringido en y**: Sintaxis nombre del grupo físico: *borde_res_y*
+-  **Borde con desplazamiento restringido en x, y (empotrado)**: Sintaxis nombre del grupo físico: `borde_res_xy`
+-  **Borde con desplazamiento restringido en x**: Sintaxis nombre del grupo físico: `borde_res_x`
+-  **Borde con desplazamiento restringido en y**: Sintaxis nombre del grupo físico: `borde_res_y`
 
 ### Lectura de cargas puntuales:
 
-Las cargas puntales se deben reportar en grupos físicos de dimensión 0, es decir puntos físicos. Estos deben llevar un nombre con la siguiente sintaxis: *puntual_Px_Py*, esto implica que en el punto (o puntos) pertenecientes a este grupo físico se quiere aplicar una fuerza puntual de componentes ortogonales **Px** y **Py** (con su respectivo signo).
+Las cargas puntales se deben reportar en grupos físicos de dimensión 0, es decir puntos físicos. Estos deben llevar un nombre con la siguiente sintaxis: ``puntual_Px_Py`, esto implica que en el punto (o puntos) pertenecientes a este grupo físico se quiere aplicar una fuerza puntual de componentes ortogonales **Px** y **Py** (con su respectivo signo).
 
 ### Lectura de cargas distribuidas sobre un borde:
 
-Las cargas distribuidas (fuerzas superficiales) se reportan sobre curvas físicas. En este caso se tiene una restricción y es que bajo estas condiciones el programa solo permite leer cargas distribuidas de magnitud y dirección uniformes sobre la curva en cuestión. En este caso, una carga distribuida de componentes **fx** y **fy** (lo cual implica que la carga puede tener alguna inclinación) corresponderá a la siguiente sintaxis en el nombre del grupo físico: *carga_fx_fy* (con su respectivo signo).
+Las cargas distribuidas (fuerzas superficiales) se reportan sobre curvas físicas. En este caso se tiene una restricción y es que bajo estas condiciones el programa solo permite leer cargas distribuidas de magnitud y dirección uniformes sobre la curva en cuestión. En este caso, una carga distribuida de componentes **fx** y **fy** (lo cual implica que la carga puede tener alguna inclinación) corresponderá a la siguiente sintaxis en el nombre del grupo físico: `carga_fx_fy` (con su respectivo signo).
 
 
 ## Ejemplo del uso del programa:
@@ -41,7 +41,7 @@ Se resolvió por el MEF el siguiente problema axisimétrico:
 
 ![Ejemplo](ejemplo.png)
 
-Para modelar este problema se creó la siguiente malla (nótese los nombres de los grupos físicos para indicar restricciones y/o cargas). Esta malla se creó utilizando la API de GMSH para Python por medio del código [malla_boussinesq](malla_boussinesq.py).
+Para modelar este problema se creó la siguiente malla (nótese los nombres de los grupos físicos para indicar restricciones y/o cargas). Esta malla se creó utilizando la API de GMSH para Python por medio del código [malla_boussinesq.py](malla_boussinesq.py).
 
 ![Grupos](malla_grupos_fisicos.png)
 
