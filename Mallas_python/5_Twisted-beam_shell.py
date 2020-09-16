@@ -5,6 +5,8 @@ Ejemplo 5: Malla shell en GMSH ( Problema "Twisted beam")
 Por: Alejandro Hincapié G.
 """
 
+# %% Se inicializa el módulo:
+
 import gmsh
 import numpy as np
 
