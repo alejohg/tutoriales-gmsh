@@ -3,21 +3,6 @@
 Programa para crear una malla básica en GMSH usando la API de Python.
 
 Por: Alejandro Hincapié G.
-
-
-Se pretende crear la siguiente geometría:
- 
-   |<-------------------40--------------------->|
-    ____________________________________________  ___
-   |                                            |  |
-   |                                            |  |
-   |                    ____    ___             |  |
-   |                   /    \    |              |  |
-   |                  |      |   3              |  20
-   |                   \____/   _|_             |  |
-   |                                            |  |
-   |                                            |  | 
-   |____________________________________________| _|_
 '''
 
 import gmsh
