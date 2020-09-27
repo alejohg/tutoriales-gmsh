@@ -22,7 +22,7 @@ Video GMSH: [Tutorial 1 en Youtube](https://youtu.be/FnHi9RWYqWM)
 
 -  Malla formato `.geo`: [Malla 1.geo](/Mallas_GMSH/1_Malla-simple_2d.geo)
 
-Video API de Python: [Pendiente](http://52.68.96.58)
+Video API de Python: [Pendiente](https://youtu.be/C1O5KMPl1u0)
 
 - Malla formato `.py`: [Malla 1.py](/Mallas_python/1_Malla-simple_2d.py)
 
