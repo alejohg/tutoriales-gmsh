@@ -23,11 +23,11 @@ Cada uno de los tutoriales se basa en crear una cierta malla de elementos finito
 
 ### Tutorial 1: Conceptos básicos sobre creación de mallas
 
-Video GMSH: [Tutorial 1 en Youtube](https://youtu.be/FnHi9RWYqWM)
+Video GMSH: [Tutorial 1 en Youtube](https://youtu.be/Jn4QbNt-lfU)
 
 -  Malla formato `.geo`: [Malla_1.geo](/Mallas_GMSH/1_Malla-simple_2d.geo)
 
-Video API de Python: [Tutorial 1 (Python) en Youtube](https://youtu.be/C1O5KMPl1u0)
+Video API de Python: [Tutorial 1 (Python) en Youtube](https://youtu.be/az4OATXyA9E)
 
 - Malla formato `.py`: [Malla_1.py](/Mallas_python/1_Malla-simple_2d.py)
 
