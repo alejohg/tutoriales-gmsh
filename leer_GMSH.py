@@ -2,13 +2,14 @@
 """
 Funciones para leer y graficar una malla creada en GMSH.
 
-Por: Alejandro Hincapié Giraldo
+Por: Alejandro Hincapié G.
 """
+
+import gmsh  # pip install --upgrade gmsh
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import gmsh
-
+from matplotlib.colors import BASE_COLORS, TABLEAU_COLORS
 
 # %% Funciones:
 
@@ -16,128 +17,51 @@ def xnod_from_msh(archivo, dim=2):
     ''' Obtiene la matriz de coordenadas de los nodos que contiene la malla de
         EF a trabajar, a partir del archivo .msh exportado por el programa GMSH.
     '''
+    gmsh.initialize()
+    gmsh.open(archivo)
+    nod, xnod, pxnod = gmsh.model.mesh.getNodes()
+    xnod = xnod.reshape((nod.size, -1))
+    gmsh.finalize()
 
-    # Se lee el archivo y se toman cada una de sus líneas:
-    m = open(archivo)
-    malla = m.readlines()
-    malla = [linea.rstrip('\n') for linea in malla]
+    return xnod[:, :dim]
 
-    # Se determina en qué lineas comienza y termina el reporte de nodos del
-    # archivo:
-    inicio_nodos = malla.index('$Nodes')
-    fin_nodos = malla.index('$EndNodes')
-
-    # Se toma únicamente la parte del archivo que se requiere:
-    malla = malla[inicio_nodos+1:fin_nodos]
-
-    # Se leen los parámetros iniciales:
-    nblocks, nnodos = [int(n) for n in malla[0].split()[0:2]]
-
-    # Se inicializan las listas para cada una de las entidades que
-    # reporta el archivo:
-    nodos_puntos = []; xnod_puntos = []
-    nodos_bordes = []; xnod_bordes = []
-    nodos_superf = []; xnod_superf = []
-
-
-    for j in range(1, len(malla)):
-        line = malla[j]
-        if len(line.split()) == 4:             # Se busca el reporte de cada bloque
-            tipo_ent = int(line.split()[0])    # Punto, borde o superf.
-    
-            nno_bloque = int(line.split()[-1]) # No. de nodos del bloque
-            nodos_bloque = malla[j+1:j+1+nno_bloque]  # Lista de nodos del bloque
-            nodos_bloque = [int(n) for n in nodos_bloque] # Se convierten a enteros
-    
-            xnod_b = malla[j+1+nno_bloque:j+1+2*nno_bloque]
-    
-            # Se reportan las coordenadas como una "matriz":
-            xnod_bloque = []
-            for l in xnod_b:
-                coord = [float(n) for n in l.split()]
-                xnod_bloque.append(coord)
-
-            # Finalmente se agregan los datos leídos a la lista corres-
-            # pondiente según la entidad (punto, línea o superficie):
-            if tipo_ent == 0:
-                nodos_puntos.append(nodos_bloque)
-                xnod_puntos.append(xnod_bloque)
-            elif tipo_ent == 1:
-                nodos_bordes.append(nodos_bloque)
-                xnod_bordes.append(xnod_bloque)
-            elif tipo_ent == 2:
-                nodos_superf.append(nodos_bloque)
-                xnod_superf.append(xnod_bloque)
-
-    # Se ensambla finalmente la matriz xnod completa:
-
-    xnod = np.empty((nnodos, 3))
-
-    # Primero se adicionan los nodos correspondientes a los puntos:
-    for i in range(len(nodos_puntos)):
-        idx = np.array(nodos_puntos[i]) - 1
-        xnod[idx, :] = np.array(xnod_puntos[i])
-
-    # Luego se agregan los nodos correspondientes a los bordes:
-    for i in range(len(nodos_bordes)):
-        idx = np.array(nodos_bordes[i]) - 1
-        xnod[idx, :] = np.array(xnod_bordes[i])
-
-    # Finalmente se agregan los nodos correspondientes a la superficie:
-    for i in range(len(nodos_superf)):
-        idx = np.array(nodos_superf[i]) - 1
-        xnod[idx, :] = np.array(xnod_superf[i])
-
-    # Se toman las columnas necesarias según la dimensión
-    xnod = xnod[:, :dim]
-
-    return xnod
 
 def LaG_from_msh(archivo):
     ''' Obtiene la matriz de interconexión nodal (LaG) que contiene la malla de
         EF a trabajar, a partir del archivo .msh exportado por el programa GMSH.
+        
+        Retorna: Matriz LaG_mat, donde la primera columna representa la super-
+        ficie a la que pertenece cada elemento finito (ordenadas de forma
+        ascendente desde 0), de tal manera que diferencie elementos finitos con
+        propiedades distintas
     '''
-    # Se lee el archivo y se toman cada una de sus líneas:
-    m = open(archivo)
-    malla = m.readlines()
-    malla = [linea.rstrip('\n') for linea in malla]
+    gmsh.initialize()
+    gmsh.open(archivo)
 
-    # Se determina en qué lineas comienza y termina el reporte de nodos del
-    # archivo:
-    for i in range(len(malla)):
-        inicio_elem = malla.index('$Elements')
-        fin_elem = malla.index('$EndElements')
+    LaG   = np.array([]) # Matriz de interconexión nodal
+    elems = np.array([]) # vector de elementos finitos
+    mats  = np.array([]) # Vector de materiales al que pertenece cada EF
+    material = 0  # Se inicializa el material
 
-    # Se toman solo las líneas necesarias
-    malla = malla[inicio_elem+1:fin_elem]
+    for ent in gmsh.model.getEntities(2):
+        dim, tag = ent
+        tipo, efs, nodos = gmsh.model.mesh.getElements(dim, tag)
+        if tipo.size == 1:
+            nodos = nodos[0]
+            elems = np.append(elems, efs[0]).astype(int)
+            LaG = np.append(LaG, nodos).astype(int)
+            mats = np.append(mats, np.tile(material, efs[0].size)).astype(int)
+            material += 1
+        else:
+            raise ValueError('La malla tiene varios tipos de elementos '
+                             'finitos 2D.')
 
-    nblocks, nelem = [int(n) for n in malla[0].split()[0:2]]
-    matrices = []  # Guardará las matrices LaG asociadas a cada entidad
-    tags = []      # Tag correspondiente a cada entidad
-    fila = 1       # Contador de filas recorridas
-    nmat = 1
-    for i in range(nblocks):
-        linea = malla[fila]
+    nef = elems.size
+    LaG = LaG.reshape((nef, -1)) - 1
+    LaG_mat = np.c_[mats, LaG]
+    gmsh.finalize()
 
-        dim, tag, tipo_ef, nef = [int(n) for n in linea.split()]
-        if dim==2:  # solo se toman nodos pertenecientes a superficies
-            tags.extend([nmat]*nef)
-            nmat += 1
-            matrices.append(malla[fila+1:fila+1+nef])
-        fila += (1+nef)
-
-    LaG = []  # Se inicializa la matriz LaG
-
-    for matriz in matrices:
-        for i in range(len(matriz)):
-            linea = [int(n) for n in matriz[i].split()]
-            LaG.append(linea)
-    LaG = np.array(LaG)
-
-    # Se reporta la superficie a la que pertenece cada elemento finito
-    LaG[:, 0] = np.array(tags)
-
-    return LaG - 1
+    return LaG_mat
 
 
 def plot_msh(file, tipo, mostrar_nodos=False, mostrar_num_nodo=False, 
@@ -152,6 +76,7 @@ def plot_msh(file, tipo, mostrar_nodos=False, mostrar_num_nodo=False,
         - mostrar_num_elem: bool. Define si se muestra el número de cada ele-
                             mento finito en el gráfico.                            
     '''
+
     LaG_mat = LaG_from_msh(file)
     mat = LaG_mat[:, 0]
     LaG = LaG_mat[:, 1:]
@@ -176,7 +101,8 @@ def plot_msh(file, tipo, mostrar_nodos=False, mostrar_num_nodo=False,
         nno = xnod.shape[0]
 
         cg = np.empty((nef,3))  # Centro de gravedad del EF
-        colores = ['k'] + list(get_named_colors_mapping().values())
+        colores = list(BASE_COLORS.values()) + list(TABLEAU_COLORS.values())
+
         fig = plt.figure(figsize=(12, 12))
         ax = plt.gca(projection='3d')
         for e in range(nef):
@@ -202,8 +128,9 @@ def plot_msh(file, tipo, mostrar_nodos=False, mostrar_num_nodo=False,
                 cg[e] = np.mean(xnod[LaG[e]], axis=0)
         
                 # y se reporta el número del elemento actual
-                ax.text(cg[e,0], cg[e,1], cg[e,2], f'{e+1}', horizontalalignment='center',
-                        verticalalignment='center',  color='b')
+                ax.text(cg[e,0], cg[e,1], cg[e,2], f'{e+1}',
+                        horizontalalignment='center',
+                        verticalalignment='center',  color=color)
         if mostrar_num_nodo:
             for i in range(nno):
                ax.text(xnod[i,0], xnod[i,1], xnod[i,2], f'{i+1}', color='r')
@@ -218,8 +145,7 @@ def plot_msh(file, tipo, mostrar_nodos=False, mostrar_num_nodo=False,
         nno = xnod.shape[0]
 
         cg = np.empty((nef,2))
-        colores = ['k'] + list(get_named_colors_mapping().values())
-
+        colores = list(BASE_COLORS.values()) + list(TABLEAU_COLORS.values())
         fig = plt.figure(figsize=(12, 12))
         ax = plt.gca()
         for e in range(nef):
@@ -243,7 +169,7 @@ def plot_msh(file, tipo, mostrar_nodos=False, mostrar_num_nodo=False,
         
                 # y se reporta el número del elemento actual
                 ax.text(cg[e,0], cg[e,1], f'{e+1}', horizontalalignment='center',
-                        verticalalignment='center',  color='b')
+                        verticalalignment='center',  color=color)
         if mostrar_num_nodo:
             for i in range(nno):
                ax.text(xnod[i,0], xnod[i,1], f'{i+1}', color='r')
