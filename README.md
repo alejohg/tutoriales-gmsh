@@ -54,7 +54,7 @@ Video GMSH + Python: [Tutorial malla extruida en Youtube](http://52.68.96.58)
 
 Con el siguiente código se puede observar como utilizar las funciones dadas en [leer_GMSH.py](/leer_GMSH.py) para obtener los parámetros más importantes de la malla:
 
-```
+```python
 from leer_GMSH import xnod_from_msh, LaG_from_msh, plot_msh
 
 malla = 'ejm_2.msh'
