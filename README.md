@@ -59,15 +59,15 @@ from leer_GMSH import xnod_from_msh, LaG_from_msh, plot_msh
 
 malla = 'ejm_2.msh'
 
-# Matriz de coordenadas nodales:
+# Matriz de coordenadas nodales
 xnod = xnod_from_msh(malla, dim=2)
 
-# Se imprimen los primeros 5 nodos
+# Se imprimen los primeros 10 nodos
 for i in range(10):
     x, y = xnod[i]
     print(f'Nodo {i+1:2.0f}: x = {x:.4f}, y = {y:.4f}')
 
-# Matriz de interconexión nodal:
+# Matriz de interconexión nodal
 LaG = LaG_from_msh(malla)
 nef = LaG.shape[0]
 
