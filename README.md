@@ -121,7 +121,7 @@ from obtener_grupos_fisicos import grupos_fisicos, obtener_nodos
 malla = 'scordelis.msh'
 
 # Obtener todos los grupos físicos de la malla:
-dict_nombres, dict_nodos = grupos_fisicos(file)
+dict_nombres, dict_nodos = grupos_fisicos(malla)
 print('Grupos físicos reportados:\n')
 for tag in dict_nombres.keys():
     dim    = dict_nombres[tag][0]
