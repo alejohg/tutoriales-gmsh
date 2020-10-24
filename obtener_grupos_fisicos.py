@@ -54,7 +54,7 @@ def obtener_nodos(archivo, nombre_grupo):
     d1, d2 = grupos_fisicos(archivo)
     nombres = [t[1] for t in d1.values()]
     if nombre_grupo in nombres:
-        nodos = d2[d2.keys()[nombres.index(nombre_grupo)]]
+        nodos = d2[list(d2.keys())[nombres.index(nombre_grupo)]]
         return nodos
     else:
         raise ValueError('El nombre de grupo físico ingresado no existe.')
