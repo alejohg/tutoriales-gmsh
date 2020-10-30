@@ -40,10 +40,18 @@ Video GMSH + Python: [Tutorial malla estructurada en Youtube](https://youtu.be/8
 
 ### Tutorial 3: Mallas estructuradas extruidas (Extruded meshes)
 
-Video GMSH + Python: [Tutorial malla extruida en Youtube](http://52.68.96.58)
+Video GMSH + Python: [Tutorial malla extruida en Youtube](https://youtu.be/lppSadXC_T0)
 
-- Malla formato `.geo`: [Malla_2.geo](/Mallas_GMSH/2_Malla-estructurada-extrude_2d.geo)
-- Malla formato `.py`: [Malla_2.py](/Mallas_python/2_Malla-estructurada-extrude_2d.py)
+- Malla formato `.geo`: [Malla_3.geo](/Mallas_GMSH/3_Malla-estructurada-extrude_2d.geo)
+- Malla formato `.py`: [Malla_3.py](/Mallas_python/3_Malla-estructurada-extrude_2d.py)
+
+### Tutorial 4: Mallas 2D utilizando Splines
+
+Video GMSH + Python: [Tutorial malla con Splines en Youtube](http://52.68.96.58)
+
+- Malla formato `.geo`: [Malla_4.geo](/Mallas_GMSH/7_Malla_con_splines.geo)
+- Malla formato `.py`: [Malla_4.py](/Mallas_python/7_Malla_con_splines.py)
+
 
 ## Recursos disponibles:
 
