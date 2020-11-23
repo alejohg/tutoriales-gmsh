@@ -47,11 +47,18 @@ Video GMSH + Python: [Tutorial malla extruida en Youtube](https://youtu.be/lppSa
 
 ### Tutorial 4: Mallas 2D utilizando Splines
 
-Video GMSH + Python: [Tutorial malla con Splines en Youtube](http://52.68.96.58)
+Video GMSH + Python: [Tutorial malla con Splines en Youtube](https://youtu.be/ggdNZoTUanc)
 
+- Ejemplos de uso Splines: [Ejemplos_splines.geo](/Mallas_GMSH/7_Ejemplos_curvas_splines.geo)
 - Malla formato `.geo`: [Malla_4.geo](/Mallas_GMSH/7_Malla_con_splines.geo)
 - Malla formato `.py`: [Malla_4.py](/Mallas_python/7_Malla_con_splines.py)
 
+### Tutorial 5: Malla de elementos Shell/Cascarón en GMSH 1
+
+Video GMSH + Python: [Tutorial 1 malla de elementos Shell en Youtube](http://52.68.96.58)
+
+- Malla formato `.geo`: [Malla_5.geo](/Mallas_GMSH/4_Scordelis-lo-roof_shell.geo)
+- Malla formato `.py`: [Malla_5.py](/Mallas_python/4_Scordelis-lo-roof_shell.py)
 
 ## Recursos disponibles:
 
