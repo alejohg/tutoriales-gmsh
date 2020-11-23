@@ -7,7 +7,7 @@
 L = 1;  // Longitud desde el centro de la malla interior hasta los bordes
 
 //-----------------------------------------------------------------------------------
-// Se crean los puntos de control de la Spline:
+// Se crean los puntos de control de la B-Spline:
 //-----------------------------------------------------------------------------------
 Point(1)  = {1, 0, 0};
 Point(2)  = {0.8, 0.027, 0};
@@ -23,7 +23,7 @@ Point(11) = {0.55, -0.043, 0};
 Point(12) = {0.8, -0.017, 0};
 
 //-----------------------------------------------------------------------------------
-// Se crea la B-Spline con tomando los puntos anteriores como puntos de control
+// Se crea la B-Spline tomando los puntos anteriores como puntos de control
 //-----------------------------------------------------------------------------------
 af = newl; BSpline(af) = {1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 1};
 
@@ -48,26 +48,11 @@ l4 = newl; Line(l4) = {p4, p1};
 cext = newll; Curve Loop(cext) = {l1, l2, l3, l4};  // Curve loop exterior
 
 //-----------------------------------------------------------------------------------
-// Se generan ambas superficies
+// Se genera la superficie
 //-----------------------------------------------------------------------------------
-s1 = news; Plane Surface(s1) = {cext, cint};  // Superficie que define el aire
-s2 = news; Plane Surface(s2) = {cint}; // Superficie que define el airfoil 
+s1 = news; Plane Surface(s1) = {cext, cint};  // Superficie externa
 
-//-----------------------------------------------------------------------------------
-// Se crean puntos auxiliares para controlar tamaño de malla interior:
-//-----------------------------------------------------------------------------------
-x = 0.1;
-
-
-For i In {1:0.8/0.05 + 1}
-    paux = newp; Point(paux) = {x, 0, 0, 0.5};
-    Point{paux} In Surface{s2};
-    x += 0.05;
-EndFor
-
-
-Physical Surface("Aire")    = {s1};
-Physical Surface("Airfoil") = {s2};
+Physical Surface("Aire") = {s1};
 
 //-----------------------------------------------------------------------------------
 // Finalmente se crea la malla y se guarda:
@@ -81,4 +66,3 @@ Save "airfoil.msh";
 
 Mesh.SurfaceFaces = 1;
 Mesh.Points = 1;
-Mesh.HighOrderOptimize = 2;
