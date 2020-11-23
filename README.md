@@ -49,7 +49,7 @@ Video GMSH + Python: [Tutorial malla extruida en Youtube](https://youtu.be/lppSa
 
 Video GMSH + Python: [Tutorial malla con Splines en Youtube](https://youtu.be/ggdNZoTUanc)
 
-- Ejemplos de uso Splines: [Ejemplos_splines.geo](/Mallas_GMSH/7_Ejemplos_curvas_splines.geo)
+- Ejemplos de uso Splines: [Ejemplos_splines.geo](/Mallas_GMSH/7_Ejemplos_curvas_spline.geo)
 - Malla formato `.geo`: [Malla_4.geo](/Mallas_GMSH/7_Malla_con_splines.geo)
 - Malla formato `.py`: [Malla_4.py](/Mallas_python/7_Malla_con_splines.py)
 
