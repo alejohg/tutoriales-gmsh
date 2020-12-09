@@ -55,10 +55,18 @@ Video GMSH + Python: [Tutorial malla con Splines en Youtube](https://youtu.be/gg
 
 ### Tutorial 5: Malla de elementos Shell/Cascarón en GMSH 1
 
-Video GMSH + Python: [Tutorial 1 malla de elementos Shell en Youtube](http://52.68.96.58)
+Video GMSH + Python: [Tutorial 1 malla de elementos Shell en Youtube](https://youtu.be/eFFwv9CFDCo)
 
 - Malla formato `.geo`: [Malla_5.geo](/Mallas_GMSH/4_Scordelis-lo-roof_shell.geo)
 - Malla formato `.py`: [Malla_5.py](/Mallas_python/4_Scordelis-lo-roof_shell.py)
+
+
+### Tutorial 6: Malla de elementos Shell/Cascarón en GMSH 2
+
+Video GMSH + Python: [Tutorial 2 malla de elementos Shell en Youtube](http://52.68.96.58)
+
+- Malla formato `.geo`: [Malla_6.geo](/Mallas_GMSH/5_Twisted-beam_shell.py) [**Pendiente**]
+- Malla formato `.py`: [Malla_6.py](/Mallas_python/5_Twisted-beam_shell.py)
 
 ## Recursos disponibles:
 
