@@ -56,7 +56,6 @@ def obtener_nodos(archivo, nombre_grupo):
     nombres = [t[1] for t in d1.values()]
     if nombre_grupo in nombres:
         nodos = d2[list(d2.keys())[nombres.index(nombre_grupo)]]
-        gmsh.finalize()
         return nodos
     else:
         raise ValueError('El nombre de grupo físico ingresado no existe.')
