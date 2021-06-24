@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# Código creado por: Diego Andrés Alvarez (github.com/diegoandresalvarez)
+
 import numpy                as np
 import matplotlib.pyplot    as plt
 import warnings
